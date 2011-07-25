@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1">
+	<TextView
+		android:text="Food"></TextView>
+	    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Fish"
+            android:padding="3dip" />
+        <TextView
+            android:text="+300"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Chips"
+            android:padding="3dip" />
+        <TextView
+            android:text="+100"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Ice Cream"
+            android:padding="3dip" />
+        <TextView
+            android:text="+300"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+
+
+	<TextView></TextView>
+
+	<TextView
+		android:text="Excercise"></TextView>
+	<View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Running"
+            android:padding="3dip" />
+        <TextView
+            android:text="-500"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TextView></TextView><TextView></TextView>
+        
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="BMR"
+            android:padding="3dip" />
+        <TextView
+            android:text="-500"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>  
+      
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Total"
+            android:padding="3dip" />
+        <TextView
+            android:text="-300"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+    
+        <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Goal"
+            android:padding="3dip" />
+        <TextView
+            android:text="-500"
+            android:gravity="right"
+            android:padding="3dip" />
+    </TableRow>
+        <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+    
+   <TextView android:id="@+id/logInfoFinal"></TextView>
+</TableLayout>

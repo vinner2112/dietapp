@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/menuLayout"
+    >
+    <ViewFlipper android:id="@+id/menuFlipper"
+    		android:layout_width="fill_parent"
+    		android:layout_height="fill_parent">
+    <LinearLayout android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:id="@+id/welcomeLayout"
+    	>
+    <ImageView android:id="@+id/splash"
+       		android:src="@drawable/splash"
+       		android:layout_width="fill_parent"
+   			android:layout_height="fill_parent" />
+</LinearLayout>
+	<LinearLayout android:orientation="vertical"
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent">
+    <Button android:id="@+id/profileButton"
+       		android:text="Profile"
+       		android:layout_marginTop="75dip"
+       		android:layout_width="fill_parent"
+   			android:layout_height="wrap_content"></Button>
+   	<Button android:id="@+id/nowButton"
+       		android:text="Now"
+       		android:layout_marginTop="75dip"
+       		android:layout_width="fill_parent"
+   			android:layout_height="wrap_content"></Button>
+	<Button android:id="@+id/logButton"
+       		android:text="Log"
+       		android:layout_marginTop="75dip"       		
+       		android:layout_width="fill_parent"
+   			android:layout_height="wrap_content"></Button></LinearLayout></ViewFlipper>
+</LinearLayout>
