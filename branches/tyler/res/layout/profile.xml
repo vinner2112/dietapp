@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/welcomeLayout"
+	>
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Enter your name:"></TextView>
+    <EditText android:id="@+id/nameInput"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        />
+<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Enter your age:"></TextView>
+    <EditText android:id="@+id/ageInput"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        />
+<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Enter your height (in inches):"></TextView>
+    <EditText android:id="@+id/heightInput"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        />
+<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Enter your weight:"></TextView>
+    <EditText android:id="@+id/weightInput"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        />
+<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Select your gender:"></TextView>
+     <RadioGroup
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <RadioButton android:id="@+id/radio_male"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Male" />
+      <RadioButton android:id="@+id/radio_female"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Female" />
+    </RadioGroup>
+    <LinearLayout android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="I would like to lose "></TextView>
+    <EditText android:id="@+id/goalWeightInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        />
+    <TextView android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text=" pounds in "></TextView>
+   	<EditText android:id="@+id/goalTimeInput"
+   		android:layout_width="wrap_content"
+   		android:layout_height="wrap_content"
+   		android:inputType="number"></EditText>
+   	<TextView android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text=" days."></TextView>
+    	</LinearLayout>
+<Button android:id="@+id/saveProfileButton"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:text="Save Profile"></Button>
+</LinearLayout>
