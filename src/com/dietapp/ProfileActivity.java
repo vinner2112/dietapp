@@ -13,8 +13,11 @@ import android.widget.Toast;
 public class ProfileActivity extends Activity implements OnClickListener{
 	
     String name;
-    int goalWeight, goalTime, age, height, weight;
+    int goalWeight, goalTime, age, height, weight,deficit;
+    float bmr;
     boolean male;
+    
+    protected AppPreferences appPrefs;
     
 
 	/** Called when the activity is first created. */
@@ -24,6 +27,7 @@ public class ProfileActivity extends Activity implements OnClickListener{
 	    setContentView(R.layout.profile);
 	    Button save = (Button) findViewById(R.id.saveProfileButton);
 	    save.setOnClickListener(this);
+	    appPrefs = new AppPreferences(getApplicationContext());
 	}
 
 	@Override
@@ -42,21 +46,20 @@ public class ProfileActivity extends Activity implements OnClickListener{
 		weight = Integer.parseInt(inputField.getText().toString());
 		RadioButton rb_male = (RadioButton) findViewById(R.id.radio_male);
 		RadioButton rb_female = (RadioButton) findViewById(R.id.radio_female);
-		if (rb_male.isChecked())
+		if (rb_male.isChecked()){
 			male = true;
-		else if (rb_female.isChecked())
+			bmr = 66 + (6.23f * weight) + (12.7f * height) - (6.8f * age);
+		}
+		else if (rb_female.isChecked()){
 			male = false;
+			bmr = 665 + (4.35f * weight) + (4.7f * height) - (4.7f * age);
+		}
+		deficit = ((goalWeight * 3500)/goalTime) - (int) bmr;
 		Toast.makeText(this, "Profile saved!", Toast.LENGTH_LONG).show();
-	    SharedPreferences sp = this.getPreferences(MODE_PRIVATE);
-		SharedPreferences.Editor editor = sp.edit();
-		editor.putString("name",name);
-		editor.putInt("age", age);
-		editor.putInt("height", height);
-		editor.putInt("weight", weight);
-		editor.putInt("goalWeight", goalWeight);
-		editor.putInt("goalTime", goalTime);
-		editor.putBoolean("male", male);
-		editor.commit();
+		appPrefs.saveString("name",name);
+		appPrefs.saveInt("weight", weight);
+		appPrefs.saveInt("bmr", (int)bmr);
+		appPrefs.saveInt("deficit", deficit);
 	}
 
 }
