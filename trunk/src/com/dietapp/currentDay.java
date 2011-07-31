@@ -21,12 +21,14 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +44,13 @@ public class currentDay extends ListActivity implements OnClickListener{
 	
 	int exerciseCalories = 0;
 	
+	String exerciseName = "";
+	
     protected AppPreferences appPrefs;
+    
+	private DatabaseAdapter dbHelper;
+	
+	private Cursor cursor;
 	
     /** Called when the activity is first created. */
     @Override
@@ -62,8 +70,27 @@ public class currentDay extends ListActivity implements OnClickListener{
     	
     	exerciseButton.setOnClickListener(this);
     	
-
+		dbHelper = new DatabaseAdapter(this);
+		dbHelper.open();
+		fillData();
+		registerForContextMenu(getListView());
     }
+    
+    private void fillData(){
+    	
+    	
+		cursor = dbHelper.fetchAllCurrentEntries();
+		startManagingCursor(cursor);
+
+		String[] from = new String[] { DatabaseAdapter.KEY_currentName,DatabaseAdapter.KEY_currentCalories };
+		int[] to = new int[] { R.id.entryname,R.id.entrycalories };
+
+		SimpleCursorAdapter notes = new SimpleCursorAdapter(this,
+				R.layout.currentrow, cursor, from, to);
+		setListAdapter(notes);
+    }
+    
+    
    
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	switch(requestCode) {
@@ -222,8 +249,10 @@ public void onClick(View v) {
 		        	exerciseCalories = (weight/10) * 9 - 5;
 		        	break;
 		        }
-		    	
-		    	Toast.makeText(currentDay.this, Integer.toString(exerciseCalories), Toast.LENGTH_LONG).show();
+		    	exerciseName = adapter.getItem(item).toString();
+		    	//Toast.makeText(currentDay.this, Integer.toString(exerciseCalories), Toast.LENGTH_LONG).show();
+		    	dbHelper.createEntry(exerciseName, 1, exerciseCalories);
+		    	fillData();
 		    }
 		});
 		
@@ -233,7 +262,12 @@ public void onClick(View v) {
 }
 
     
-
+protected void onDestroy() {
+	super.onDestroy();
+	if (dbHelper != null) {
+		dbHelper.close();
+	}
+}
 
     
 }
