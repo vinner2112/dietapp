@@ -68,17 +68,6 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         /></LinearLayout>
-     <LinearLayout android:orientation="horizontal"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content">
-     <TextView android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Enter how long you excercised(in minutes):"></TextView>
-    <EditText android:id="@+id/manualExcerciseTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        /></LinearLayout>
     <LinearLayout android:orientation="horizontal"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content">
@@ -90,7 +79,10 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         /></LinearLayout>
-    <Button android:id="@+id/manualExcerciseButton"
+    <TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="All exercise durations are 30 minutes"></TextView>
+    <Button android:id="@+id/manualExerciseButton"
     		android:layout_width="fill_parent"
     		android:layout_height="wrap_content"
     		android:text="Save entry"></Button></LinearLayout></ViewFlipper>		

@@ -16,12 +16,13 @@ import android.widget.ViewSwitcher;
 
 public class ManualActivity extends Activity implements OnClickListener,OnItemSelectedListener{
 	
-	Button foodButton,excerciseButton;
-	String foodName, excerciseName;
-	int foodCalories, foodServings, excerciseTime, excerciseCalories;
+	Button foodButton,exerciseButton;
+	String foodName, exerciseName;
+	int foodCalories, foodServings, exerciseCalories;
 	ViewFlipper vf;
 	Spinner spinner;
 	ArrayAdapter<CharSequence> adapter;
+	DatabaseAdapter dbHelper;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -34,11 +35,13 @@ public class ManualActivity extends Activity implements OnClickListener,OnItemSe
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    spinner.setAdapter(adapter);
 	    spinner.setOnItemSelectedListener(this);
-		excerciseButton = (Button) findViewById(R.id.manualExcerciseButton);
-	    excerciseButton.setOnClickListener(this);
+		exerciseButton = (Button) findViewById(R.id.manualExerciseButton);
+	    exerciseButton.setOnClickListener(this);
 		foodButton = (Button) findViewById(R.id.manualFoodButton);
 	    foodButton.setOnClickListener(this);
 	    vf = (ViewFlipper) findViewById(R.id.manualFlipper);
+	    dbHelper = new DatabaseAdapter(this);
+		dbHelper.open();
 	}
 
 	@Override
@@ -53,19 +56,21 @@ public class ManualActivity extends Activity implements OnClickListener,OnItemSe
 			getInput = (EditText) findViewById(R.id.manualFoodServings);
 			if (getInput.getText().length() != 0)
 				foodServings = Integer.parseInt(getInput.getText().toString());
-			Toast.makeText(this, "Entry made!", Toast.LENGTH_SHORT);
+			foodCalories = foodCalories * foodServings;
+			dbHelper.createEntry(foodName, 0, foodCalories);
+			dbHelper.close();
+			finish();
 		}
-		else if (excerciseButton.getId() == ((Button) v).getId()){
+		else if (exerciseButton.getId() == ((Button) v).getId()){
 			EditText getInput = (EditText) findViewById(R.id.manualExcerciseName);
 			if (getInput.getText().length() != 0)
-				excerciseName = getInput.getText().toString();
+				exerciseName = getInput.getText().toString();
 			getInput = (EditText) findViewById(R.id.manualExcerciseCalories);
 			if (getInput.getText().length() != 0)
-				excerciseCalories = Integer.parseInt(getInput.getText().toString());
-			getInput = (EditText) findViewById(R.id.manualExcerciseTime);
-			if (getInput.getText().length() != 0)
-				excerciseTime = Integer.parseInt(getInput.getText().toString());
-			Toast.makeText(this, "Entry made!", Toast.LENGTH_SHORT);
+				exerciseCalories = Integer.parseInt(getInput.getText().toString());
+			dbHelper.createEntry(exerciseName, 1, exerciseCalories);
+			dbHelper.close();
+			finish();
 		}
 		
 		
