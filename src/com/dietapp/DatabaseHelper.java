@@ -16,9 +16,8 @@ public DatabaseHelper(Context context) {
 
 @Override
 public void onCreate(SQLiteDatabase db) {
-	
-	db.execSQL("create table currentTable (_id integer primary key autoincrement, name text not null, type integer not null, calories integer not null);");
-	db.execSQL("create table logTable (_id integer primary key autoincrement, date text not null, name text not null, type integer not null, calories interger not null);");
+	db.execSQL("create table currentTable (_id integer primary key autoincrement, date text not null, " +
+			"name text not null, type integer not null, calories integer not null);");
 }
 
 
