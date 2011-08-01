@@ -15,4 +15,33 @@
         <item>Food</item>
         <item>Excercise</item>
     </string-array>
+    <string-array name="exerciseArray">
+    	<item>Aerobics</item>
+    	<item>Badminton</item>
+    	<item>Basketball</item>
+    	<item>Bicycling</item>
+    	<item>Dancing</item>
+    	<item>Golfing</item>
+    	<item>Hiking</item>
+    	<item>Housework</item>
+    	<item>Jogging(12 min mile)</item>
+    	<item>Jogging(10 min mile)</item>
+    	<item>Running(7.5 min mile)</item>
+    	<item>Running(6.7 min mile)</item>
+    	<item>Running(6 min mile)</item>
+    	<item>Scuba Diving</item>
+    	<item>Skiing</item>
+    	<item>Soccer</item>
+    	<item>Stair climbing</item>
+    	<item>Swimming(25 yards/min)</item>
+    	<item>Swimming(50 yards/min)</item>
+    	<item>Tennis</item>
+    	<item>Volleyball</item>
+    	<item>Walking(30 min mile)</item>
+    	<item>Walking(20 min mile)</item>
+    	<item>Walking(15 min mile)</item>
+    	<item>Weight Training(40sec between sets)</item>
+    	<item>Weight Training(60sec between sets)</item>
+    	<item>Weight Training(90sec between sets)</item>
+    </string-array>
 </resources>
