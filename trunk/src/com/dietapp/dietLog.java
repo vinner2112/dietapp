@@ -2,32 +2,34 @@ package com.dietapp;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class dietLog extends ListActivity {
 	
-	//public MockDb mockDb;
+	private DatabaseAdapter dbHelper;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.diet_log);
-	        fillData();
+	    //    fillData();
 
-	        ListView lv = getListView();
-	        lv.setTextFilterEnabled(true);
+	        //ListView lv = getListView();
+	        //lv.setTextFilterEnabled(true);
 
-	        lv.setOnItemClickListener(new OnItemClickListener() {
-	          public void onItemClick(AdapterView<?> parent, View view,
-	              int position, long id) {
-	            goToMenu();
-	          }
-	        });
+	        //lv.setOnItemClickListener(new OnItemClickListener() {
+	         // public void onItemClick(AdapterView<?> parent, View view,
+	          //    int position, long id) {
+	          //  goToMenu();
+	         // }
+	       // });
 
 	        
 	    	Button backButton = (Button) findViewById(R.id.back);
@@ -45,11 +47,17 @@ public class dietLog extends ListActivity {
 		 startActivity(i);
 	 }
 	 
-	  private void fillData() {
-		  String[] Days = {"Day1", "Day2", "Day3", "Day4"};
-		  setListAdapter(new ArrayAdapter<String>(this, R.layout.log_list, Days));
+	  //private void fillData() {
+		 // Cursor c = dbHelper.fetchAllCurrentEntries();
+		 // startManagingCursor(c);
+		 // String[] dates = new String[] { DatabaseAdapter.KEY_currentDate };
+		 // int[] to = new int[] {R.id.text1};
+
+		//  SimpleCursorAdapter entries = new SimpleCursorAdapter(this,
+		//			R.layout.calorie_table, c, dates, to);
+		//  setListAdapter(entries);
 	  
-	  }
+//	  }
 	  
 	  public void viewDay(int i){
 		  //Intent inten = Intent(this, dayView.class);

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,9 +21,9 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,11 +31,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class currentDay extends ListActivity implements OnClickListener{
-	
-	private static final int ACTIVITY_CREATE=0;
 	
 	Button manualButton,scanButton,exerciseButton;
 	
@@ -51,6 +49,11 @@ public class currentDay extends ListActivity implements OnClickListener{
 	private DatabaseAdapter dbHelper;
 	
 	private Cursor cursor;
+	
+	public String dateform = "MM/dd/yy";
+
+	private String date;
+	Calendar cal;
 	
     /** Called when the activity is first created. */
     @Override
@@ -72,23 +75,22 @@ public class currentDay extends ListActivity implements OnClickListener{
     	
 		dbHelper = new DatabaseAdapter(this);
 		dbHelper.open();
+		
 		fillData();
 		registerForContextMenu(getListView());
     }
     
     private void fillData(){
     	
-    	
-		cursor = dbHelper.fetchAllCurrentEntries();
-		startManagingCursor(cursor);
-
-		String[] from = new String[] { DatabaseAdapter.KEY_currentName,DatabaseAdapter.KEY_currentCalories };
+    	Cursor c = dbHelper.fetchAllCurrentEntries();
+    	startManagingCursor(c);
+		String[] from = new String[] { DatabaseAdapter.KEY_currentName,DatabaseAdapter.KEY_currentDate};
 		int[] to = new int[] { R.id.entryname,R.id.entrycalories };
 
-		SimpleCursorAdapter notes = new SimpleCursorAdapter(this,
-				R.layout.currentrow, cursor, from, to);
-		setListAdapter(notes);
-    	
+		SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(this,
+				R.layout.currentrow, c, from, to);
+		setListAdapter(mAdapter);
+
     }
     
     
@@ -114,6 +116,9 @@ public class currentDay extends ListActivity implements OnClickListener{
 
 @Override
 public void onClick(View v) {
+	cal = Calendar.getInstance();
+	date = DateFormat.format(dateform, cal.get(Calendar.DATE)).toString();
+	
 	if (manualButton.getId() == ((Button) v).getId()){
 		Intent i = new Intent(this,ManualActivity.class);
 		startActivity(i);
@@ -164,7 +169,7 @@ public void onClick(View v) {
 		final int weight = appPrefs.getInt("weight");
 		AlertDialog.Builder showList = new AlertDialog.Builder(this);
 		showList.setTitle("Select an exercise (30 minutes)");
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.exerciseArray, android.R.layout.simple_list_item_1);
+		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.exerciseArray, android.R.layout.simple_spinner_dropdown_item);
 		showList.setAdapter(adapter, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int item) {
 		        switch(item){
@@ -252,7 +257,7 @@ public void onClick(View v) {
 		        }
 		    	exerciseName = adapter.getItem(item).toString();
 		    	//Toast.makeText(currentDay.this, Integer.toString(exerciseCalories), Toast.LENGTH_LONG).show();
-		    	dbHelper.createEntry(exerciseName, 1, exerciseCalories);
+		    	dbHelper.createEntry(date, exerciseName, 1, exerciseCalories);
 		    	fillData();
 		    }
 		});
