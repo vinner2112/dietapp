@@ -88,6 +88,7 @@ public class currentDay extends ListActivity implements OnClickListener{
 		SimpleCursorAdapter notes = new SimpleCursorAdapter(this,
 				R.layout.currentrow, cursor, from, to);
 		setListAdapter(notes);
+    	
     }
     
     

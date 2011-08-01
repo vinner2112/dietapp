@@ -12,8 +12,6 @@ public class LogInfo extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.loginfo);
-	    TextView tv = (TextView) findViewById(R.id.logInfoFinal);
-	    tv.setText("You were 200 calories over your goal.");
 	    
 	}
 

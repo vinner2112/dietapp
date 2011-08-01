@@ -55,11 +55,11 @@ public class ProfileActivity extends Activity implements OnClickListener{
 			bmr = 665 + (4.35f * weight) + (4.7f * height) - (4.7f * age);
 		}
 		deficit = ((goalWeight * 3500)/goalTime) - (int) bmr;
-		Toast.makeText(this, "Profile saved!", Toast.LENGTH_LONG).show();
 		appPrefs.saveString("name",name);
 		appPrefs.saveInt("weight", weight);
 		appPrefs.saveInt("bmr", (int)bmr);
 		appPrefs.saveInt("deficit", deficit);
+		finish();
 	}
 
 }
